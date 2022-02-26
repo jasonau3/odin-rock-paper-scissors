@@ -32,26 +32,40 @@ const showResult = (result) => {
 
     // helper function for when GUI is added 
     if (result == 0) {
-        return ("It's a tie!")
+        results.textContent = `It's a tie! Scores: ${resultCounter[0]} | ${resultCounter[1]} `
     }
     else if (result == 1) {
-        return ("You won!")
+        resultCounter[0] = resultCounter[0] + 1
+        results.textContent = `You won! Scores: ${resultCounter[0]} | ${resultCounter[1]} `
     } 
     else if (result == 2) {
-        return ("You lost :(")
+        resultCounter[1] = resultCounter[1] + 1
+        results.textContent = `You lost :( Scores: ${resultCounter[0]} | ${resultCounter[1]} `
     }
 }
 
-const game = () => {
+const buttons = document.querySelectorAll('.buttons');
 
-    // play 5 times
-    for (let i = 0; i<5; i++) {
+const results = document.createElement('div');
+document.body.appendChild(results)
 
-        const playerSelection = prompt("What will you go? (rock, paper, scissors)");
-        const computerSelection = computerPlay();
+let resultCounter = [0,0]
 
-        console.log(playRound(playerSelection, computerSelection))
-    }
-}
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
 
-game()
+        // play game
+        let playerSelection = button.textContent;
+        let computerSelection = computerPlay();
+        playRound(playerSelection, computerSelection)
+
+        // find winner
+        if (resultCounter[0] == 5) {
+            results.textContent = "You got 5 wins! Good game!"
+        }
+        else if (resultCounter[1] == 5) {
+            results.textContent = "Computer got 5 wins!! >:( Good game!"
+        }
+
+    })
+})
