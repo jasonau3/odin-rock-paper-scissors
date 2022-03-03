@@ -83,6 +83,7 @@ const spicePage = () => {
 
     header.style.fontFamily = "Comic Sans MS, Comic Sans, cursive";
     header.textContent = "Very Fun Rock Paper Scissors"
+    results.style.fontFamily = "Comic Sans MS, Comic Sans, cursive";
     buttons.forEach((button) => {
         button.classList.add("fun-buttons");
         button.style.backgroundColor = 'rgb(' + randRGB().join() + ')';
@@ -99,7 +100,7 @@ let resultCounter = [0,0]
 const results = document.createElement('div');
 results.style.margin = "20px 0";
 results.textContent = `Scores: ${resultCounter[0]} | ${resultCounter[1]}`
-results.style.fontFamily = "Comic Sans MS, Comic Sans, cursive";
+results.style.fontFamily = "Times New Roman, Times, serif";
 results.style.textAlign = "center";
 container.appendChild(results)
 
